@@ -1,0 +1,10 @@
+.classpath
+.settings/
+.loadpath
+.project
+/target/
+
+# Filesystem dust
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
