@@ -21,11 +21,11 @@ final class GraphicalHandler {
     void execute() {
         setNativeTheme();
 
-        File in = promptOpenFile();
+        File in = promptOpenFile(new File("."));
         if (in == null) {
             System.exit(0);
         }
-        File out = promptSaveFile();
+        File out = promptSaveFile(in.getParentFile());
         if (out == null) {
             System.exit(0);
         }
@@ -58,7 +58,7 @@ final class GraphicalHandler {
         JOptionPane.showMessageDialog(null, message, "", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private File promptOpenFile() {
+    private File promptOpenFile(File defaultDirectory) {
         JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(JAR_FILTER);
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -67,9 +67,10 @@ final class GraphicalHandler {
         return null;
     }
 
-    private File promptSaveFile() {
+    private File promptSaveFile(File defaultDirectory) {
         JFileChooser chooser = new JFileChooser();
         chooser.addChoosableFileFilter(JAR_FILTER);
+        chooser.setCurrentDirectory(defaultDirectory);
         if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
             return ensureExtension(chooser.getSelectedFile(), JAR_EXTENSION);
         }
