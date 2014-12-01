@@ -3,6 +3,7 @@
 .loadpath
 .project
 /target/
+dependency-reduced-pom.xml
 
 # Filesystem dust
 Desktop.ini
